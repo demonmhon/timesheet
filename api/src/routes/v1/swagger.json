@@ -1,0 +1,130 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "express-4x-api-starter",
+    "description": "express-4x-api-starter",
+    "version": "1.0.0"
+  },
+  "basePath": "",
+  "tags": [
+    {
+      "name": "system",
+      "description": "system"
+    },
+    {
+      "name": "user",
+      "description": "User"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "paths": {
+    "/v1/users": {
+      "get": {
+        "tags": ["user"],
+        "summary": "List user",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of user",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "404": {
+            "description": "Users not found"
+          }
+        }
+      },
+      "post": {
+        "tags": ["user"],
+        "summary": "Create a new user",
+        "description": "",
+        "requestBody": {
+          "description": "Create a new user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/NewUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation. New user data added",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/v1/users/{userId}": {
+      "get": {
+        "tags": ["user"],
+        "summary": "",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": ["email", "active"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "age": {
+          "type": "number"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "True for active users"
+        }
+      }
+    },
+    "NewUser": {
+      "type": "object",
+      "required": ["name", "email"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
