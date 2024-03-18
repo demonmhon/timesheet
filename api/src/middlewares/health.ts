@@ -5,7 +5,7 @@ const sendHealthReport = (req: Request, res: Response) => {
   res.status(200).send({ status: 'OK', app: config.app }).end();
 };
 
-const healthMiddleware = () => {
+const healthMiddleware = (): Router => {
   const router = Router();
   router.route('/').get(sendHealthReport);
   router.route('/health').get(sendHealthReport);

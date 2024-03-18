@@ -1,5 +1,4 @@
 import morgan from 'morgan';
-import { Request, Response, NextFunction } from 'express';
 import { createLogger, format, transports } from 'winston';
 
 const { env, logLevel } = require('../config');

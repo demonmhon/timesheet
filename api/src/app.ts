@@ -14,7 +14,7 @@ import faviconMiddleware from './middlewares/favicon';
 import healthMiddleware from './middlewares/health';
 import logAccess from './middlewares/log-access';
 // import appRoutes from './routes/app';
-// import errors from './middlewares/errors';
+import errorsMiddleware, { errorNotFoundMiddleware } from './middlewares/errors';
 
 class App {
   public app: Application;
@@ -38,7 +38,8 @@ class App {
     this.app.use(healthMiddleware());
     this.app.use(logAccess());
     // this.app.use(appRoutes());
-    // this.app.use(errors.handle());
+    this.app.use(errorsMiddleware());
+    this.app.use(errorNotFoundMiddleware());
     this.app.listen(appPort, () => {
       console.info(
         util.format(
