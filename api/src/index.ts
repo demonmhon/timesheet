@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-import util from 'util';
 import dotenv from 'dotenv';
 import logger from './utils/logger';
 dotenv.config();

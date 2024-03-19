@@ -1,6 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
-
 import util from 'util';
 import express, { Application } from 'express';
 import compression from 'compression';
