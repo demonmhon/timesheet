@@ -8,7 +8,9 @@ import config from './config';
 import faviconMiddleware from './middlewares/favicon';
 import healthMiddleware from './middlewares/health';
 import logAccess from './middlewares/log-access';
-// import appRoutes from './routes/app';
+import db from './db';
+
+import appRoutes from './routes/app';
 import errorsMiddleware, {
   errorNotFoundMiddleware,
 } from './middlewares/errors';
@@ -22,6 +24,7 @@ export class App {
   }
 
   private init() {
+    db.connect();
     this.app.use(compression());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
@@ -30,7 +33,7 @@ export class App {
     this.app.use(faviconMiddleware());
     this.app.use(healthMiddleware());
     this.app.use(logAccess());
-    // this.app.use(appRoutes());
+    this.app.use(appRoutes());
     this.app.use(errorsMiddleware());
     this.app.use(errorNotFoundMiddleware());
   }
