@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { DateInput } from '@mantine/dates'
 import { TimeInput } from '@mantine/dates'
 
-export const Form = (props) => {
-  const [value, setValue] = useState(null)
+export const Form = (props: any) => {
+  const [value, setValue] = useState<Date | null>(null)
   return (
     <>
       <DateInput
