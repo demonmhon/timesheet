@@ -3,25 +3,28 @@ import { Request, Response } from 'express';
 import { ResourceNotfound, BadRequest } from '../../utils/custom-errors';
 import service from '../../services/v1/projects.service';
 
-export const getAll = async (req: Request, res: Response) => {
-  const result = await service.getAll();
+export const getAll = async (req: Request, res: Response): Promise<any> => {
+  const results = await service.getAll();
   return res.send({
-    total: result.length,
-    data: [...result],
+    total: results.length,
+    data: [...results],
   });
 };
 
-// export const getById = (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   if (!id) {
-//     throw new BadRequest();
-//   }
-//   const matchUser = users.filter((u) => u.id == id);
-//   if (matchUser.length) {
-//     return res.send(matchUser[0]);
-//   }
-//   throw new ResourceNotfound(`No user with given id: ${id}`);
-// };
+export const getById = async (req: Request, res: Response): Promise<any> => {
+  const id = `${req.params.id}`;
+  if (!id) {
+    throw new BadRequest();
+  }
+  const result = await service.getById(id);
+  console.log(result);
+  if (!result) {
+    throw new ResourceNotfound(`No project with given id: ${id}`);
+  }
+  return res.send({
+    data: result,
+  });
+};
 
 // export const postUser = (req: Request, res: Response) => {
 //   const { name, email } = req.body;
@@ -41,4 +44,4 @@ export const getAll = async (req: Request, res: Response) => {
 //   });
 // };
 
-export default { getAll };
+export default { getAll, getById };

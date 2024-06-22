@@ -16,7 +16,7 @@
     "lint": "eslint -c .eslintrc ./src",
     "lint:fix": "eslint -c .eslintrc ./src --fix",
     "prettier": "prettier --check \"src/**/*.js\"",
-    "prettier:write": "prettier --check \"src/**/*.js\" --write"
+    "prettier:write": "prettier --check \"src/**/*.{js,ts}\" --write"
   },
   "author": "thanawat.petchsri@gmail.com",
   "license": "ISC",

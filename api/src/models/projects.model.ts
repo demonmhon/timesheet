@@ -7,6 +7,12 @@ enum ProjectStatus {
   DELETED,
 }
 
+export type ProjectItem = {
+  title: string;
+  status: string;
+  created_at: number;
+};
+
 const ProjectsSchema = new mongoose.Schema(
   {
     title: {

@@ -8,9 +8,8 @@ const routesV1 = (): Router => {
   router.use('/docs', serve, spec);
   router.route('/swagger.json').get(swaggerJSON);
 
-  router
-    .route('/projects')
-    .get(projectController.getAll)
+  router.route('/projects').get(projectController.getAll);
+  router.route('/projects/:id').get(projectController.getById);
 
   return router;
 };

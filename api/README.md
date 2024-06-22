@@ -1,6 +1,6 @@
-# express-4x-api-starter
+# timesheet-api
 
-The express 4x starter for RestAPI project. Also Docker provided for production build.
+API for timesheet
 
 ## Getting started
 
@@ -18,10 +18,16 @@ $ npm install
 
 ## Start app
 
+Start docker
+
+```bash
+docker-compose up -d
+```
+
 For development, will start using [nodemon](https://nodemon.io/)
 
 ```bash
-$ npm run start:dev
+$ npm run dev
 ```
 
 **_Starter routes_**

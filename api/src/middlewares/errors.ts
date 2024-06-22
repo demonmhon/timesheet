@@ -1,4 +1,10 @@
-import { Router, Request, Response, ErrorRequestHandler, NextFunction } from 'express';
+import {
+  Router,
+  Request,
+  Response,
+  ErrorRequestHandler,
+  NextFunction,
+} from 'express';
 import util from 'util';
 import _get from 'lodash/get';
 
@@ -21,7 +27,8 @@ export const handleNotFound = (req: Request, res: Response) => {
     .end();
 };
 
-export const errorNotFoundMiddleware = (): Router => Router().use(handleNotFound)
+export const errorNotFoundMiddleware = (): Router =>
+  Router().use(handleNotFound);
 
 export const handleBadRequest = (
   err: ErrorRequestHandler,

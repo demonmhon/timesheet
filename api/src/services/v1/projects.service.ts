@@ -1,9 +1,15 @@
 import Projects from '../../models/projects.model';
+import { Document } from 'mongoose';
 import logger from '../../utils/logger';
 
-const getAll = async () => {
+export const getAll = async (): Promise<Document[]> => {
   logger.info('Getting projects with .getAll()');
   const result = await Projects.find({});
+  return result;
+};
+
+export const getById = async (id: string): Promise<any> => {
+  const result = await Projects.findOne({ _id: id });
   return result;
 };
 
@@ -17,11 +23,6 @@ const getAll = async () => {
 //     logger.error(`Error on create todo`);
 //     throw error;
 //   }
-// };
-
-// const getById = async (id) => {
-//   const result = await Todos.findOne({ _id: id });
-//   return result;
 // };
 
 // const setItemStatus = async (id, status) => {
@@ -112,5 +113,6 @@ const getAll = async () => {
 // };
 
 export default {
-  getAll
-}
+  getAll,
+  getById,
+};
