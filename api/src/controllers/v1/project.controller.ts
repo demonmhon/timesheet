@@ -17,7 +17,6 @@ export const getById = async (req: Request, res: Response): Promise<any> => {
     throw new BadRequest();
   }
   const result = await service.getById(id);
-  console.log(result);
   if (!result) {
     throw new ResourceNotfound(`No project with given id: ${id}`);
   }
