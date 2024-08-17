@@ -3,13 +3,12 @@ import '@mantine/core/styles.css'
 import '@mantine/dates/styles.css'
 import './App.css'
 
-import { Form } from './pages/Form'
+import Router from './Router';
 
 function App() {
   return (
     <MantineProvider>
-      <p>timesheet</p>
-      <Form />
+      <Router />
     </MantineProvider>
   )
 }
