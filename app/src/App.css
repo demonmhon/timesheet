@@ -1,3 +1,73 @@
-#root {
-  padding: var(--padding);
+#root {}
+
+/**
+ * App header
+ */
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: calc(var(--padding) / 2) var(--padding);
+  font-size: 1rem;
+  margin-bottom: var(--padding);
+}
+
+.app-header a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+.app-header ul {
+  display: block;
+}
+
+.app-header li {
+  position: relative;
+  display: inline-block;
+}
+
+.app-header ul,
+.app-header li {
+  margin: 0;
+  padding: 0;
+}
+
+.app-main-nav {
+  flex: 1;
+}
+
+.app-main-nav li + li {
+  margin-left: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.app-main-nav li::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  border-bottom: solid 1px currentColor;
+  content: '';
+}
+
+.app-main-nav li.active::after {
+  display: block;
+}
+
+.app-header-logo {
+  display: inline-block;
+  margin-right: 15px;
+}
+.app-header-logo img {
+  width: auto;
+  height: 32px;
+}
+
+/**
+ * Main
+ */
+.app-main {
+  max-width: 900px;
+  margin: 0 auto;
 }

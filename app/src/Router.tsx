@@ -1,20 +1,31 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import MainLayout from './layouts/Main'
-import Form from './pages/Form'
+import Error from './pages/Error'
+import Timesheet from './pages/Timesheet'
 
-const Router = () => {
+const AppRouter = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route index element={<Form />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route index element={<Timesheet />} />
+        <Route path="/timesheet" element={<Timesheet />} />
+        <Route path="/404" element={<Error />} />
+        <Route path="*" element={<Navigate replace to="/404" />} />
+      </Route>
+    </Routes>
   )
 }
 
-export { Router as AppRoute }
+const AppBrowserRouter = () => {
+  return (
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
+  );
+};
 
-export default Router
+export { AppRouter, AppBrowserRouter };
+
+export default AppBrowserRouter
+

@@ -1,10 +1,14 @@
 import { Outlet } from 'react-router-dom'
 
+import Header from './Header';
+
 const MainLayout = (props) => {
   return (
     <>
-      <header></header>
-      <Outlet />
+      <Header />
+      <main className="app-main">
+        <Outlet />
+      </main>
       <footer></footer>
     </>
   )
