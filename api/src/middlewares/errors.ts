@@ -46,7 +46,7 @@ export const handleBadRequest = (
     .end();
 };
 
-export const errorMiddlware =
+export const errorMiddleware =
   () =>
   (
     err: ErrorRequestHandler,
@@ -73,4 +73,4 @@ export const errorMiddlware =
     }
   };
 
-export default errorMiddlware;
+export default errorMiddleware;

@@ -13,6 +13,18 @@ export const getById = async (id: string): Promise<any> => {
   return result;
 };
 
+export const createNew = async (projectData: any): Promise<any> => {
+  try {
+    logger.info('Creating new project');
+    const newItem = new Projects(projectData);
+    const result = await newItem.save();
+    return result;
+  } catch (error) {
+    logger.error(`Error on create project`);
+    throw error;
+  }
+};
+
 // const createNew = async (todoData) => {
 //   try {
 //     logger.info('Creating new todo');
@@ -115,4 +127,5 @@ export const getById = async (id: string): Promise<any> => {
 export default {
   getAll,
   getById,
+  createNew,
 };

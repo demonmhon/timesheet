@@ -89,7 +89,79 @@
           }
         }
       }
-    }
+    },
+    "/v1/projects": {
+      "get": {
+        "tags": ["system"],
+        "summary": "List project",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of project",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          },
+          "404": {
+            "description": "Projects not found"
+          }
+        }
+      },
+      "post": {
+        "tags": ["system"],
+        "summary": "Create a new project",
+        "description": "",
+        "requestBody": {
+          "description": "Create a new project",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/NewProject"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation. New project data added",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        }
+      }
+    },
+    "/v1/projects/{projectId}": {
+      "get": {
+        "tags": ["system"],
+        "summary": "",
+        "description": "",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project object",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          },
+          "404": {
+            "description": "Project not found"
+          }
+        }
+      }
+    } 
   },
   "definitions": {
     "User": {
@@ -122,6 +194,31 @@
           "type": "string"
         },
         "email": {
+          "type": "string"
+        }
+      }
+    },
+    "Project": {
+      "type": "object",
+      "required": ["name", "active"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "True for active projects"
+        }
+      }
+    },
+    "NewProject": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "title": {
           "type": "string"
         }
       }
