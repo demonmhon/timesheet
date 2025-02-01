@@ -1,5 +1,5 @@
 import Projects from '../../models/projects.model';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import logger from '../../utils/logger';
 
 export const getAll = async (): Promise<Document[]> => {
@@ -9,6 +9,7 @@ export const getAll = async (): Promise<Document[]> => {
 };
 
 export const getById = async (id: string): Promise<any> => {
+  if( !mongoose.Types.ObjectId.isValid(id) ) return null;
   const result = await Projects.findOne({ _id: id });
   return result;
 };
@@ -25,17 +26,6 @@ export const createNew = async (projectData: any): Promise<any> => {
   }
 };
 
-// const createNew = async (todoData) => {
-//   try {
-//     logger.info('Creating new todo');
-//     const newItem = new Todos(todoData);
-//     const result = await newItem.save();
-//     return result;
-//   } catch (error) {
-//     logger.error(`Error on create todo`);
-//     throw error;
-//   }
-// };
 
 // const setItemStatus = async (id, status) => {
 //   try {

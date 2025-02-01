@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 import { ResourceNotfound, BadRequest } from '../../utils/custom-errors';
 import projectService from '../../services/v1/projects.service';
@@ -11,25 +11,25 @@ export const getAll = async (req: Request, res: Response): Promise<any> => {
   });
 };
 
-export const getById = async (req: Request, res: Response): Promise<any> => {
+export const getById = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   const id = `${req.params.id}`;
   if (!id) {
-    throw new BadRequest();
+    next(new BadRequest());
   }
   const result = await projectService.getById(id);
-  if (!result) {
-    throw new ResourceNotfound(`No project with given id: ${id}`);
+  if (result) {
+    return res.send({
+      data: result,
+    });
   }
-  return res.send({
-    data: result,
-  });
+  next(new ResourceNotfound(`No project with given id: ${id}`));
 };
 
-export const createNewProject = async (req: Request, res: Response): Promise<any> => {
+export const createNewProject = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   const data = req.body;
   // validate data to have required fields and correct data types
   if (!data.title) {
-    throw new BadRequest('Title is required');
+    next(new BadRequest('Title is required'));
   }
   const result = await projectService.createNew(data);
   return res.send({
